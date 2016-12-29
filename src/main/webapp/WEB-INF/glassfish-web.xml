@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
+<glassfish-web-app error-url="">
+  <class-loader delegate="true"/>
+  <context-root>/tp-integrador</context-root>
+  <security-role-mapping>
+    <group-name>USUARIO_ADMIN</group-name>
+    <role-name>ADMIN</role-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <group-name>USUARIO_FINAL</group-name>
+    <role-name>COMMON_USER</role-name>
+  </security-role-mapping>
+</glassfish-web-app>

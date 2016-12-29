@@ -1,0 +1,54 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="http://java.sun.com/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <h:form>            
+        <div class="jumbotron">
+            <h1>Jumbotron heading</h1>
+            <p class="lead">TP Final JEE7  - Aplicación para gestión de alquileres temporales.</p>
+            <p><h:outputLink value="javascript:void(0)" class="btn btn-lg btn-success" pt:role="button" onclick="PF('dlg').show();">Registrese y comience a operar</h:outputLink></p>
+        </div>
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Ofrecer</h4>
+                <p>Ofrezca su propiedad en alquiler.</p>
+
+                <h4>Cobrar</h4>
+                <p>Acepte las ofertas y cobrelas.</p>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <h4>Alquilar</h4>
+                <p>Busque los mejores departamentos para sus viajes.</p>
+
+                <h4>Pagar</h4>
+                <p>Realice el pago de manera segura y eficiente.</p>
+            </div>
+        </div>
+
+        <p:dialog header="Login" widgetVar="dlg" resizable="false">
+            <h:panelGrid columns="2" cellpadding="5">
+                <f:facet name="header">
+                    <h1> Registrarse como usuario</h1>
+                </f:facet>  
+                <h:outputLabel for="correo" value="Correo Electronico" />
+                <p:inputText id="correo" value="#{userLoginView.correo}" required="true" label="correo" />
+
+                <h:outputLabel for="username" value="Nombre Usuario:" />
+                <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
+
+                <h:outputLabel for="password" value="Clave:" />
+                <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
+
+                <f:facet name="footer">
+                    <p:commandButton   value="Registrarse" action="#{userLoginView.login}" />
+                </f:facet>  
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
+</ui:composition>

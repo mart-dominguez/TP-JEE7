@@ -11,7 +11,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,6 +19,26 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/inicio.xhtml</welcome-file>
+        <welcome-file>public/inicio.jsf</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <display-name>General Security</display-name>
+        <web-resource-collection>
+            <web-resource-name>All</web-resource-name>
+            <url-pattern>/privado/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>COMMON_USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>REALM_TP</realm-name>
+
+        <form-login-config>
+            <form-login-page>/public/login.html</form-login-page>
+            <form-error-page>/public/error.html</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
