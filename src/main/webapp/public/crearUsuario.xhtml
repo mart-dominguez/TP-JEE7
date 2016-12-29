@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:pt="http://java.sun.com/jsf/passthrough"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/plantilla.xhtml">
+
+    <ui:define name="content">
+        <h:form>
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <h:panelGrid columns="2" cellpadding="5">
+                <f:facet name="header">
+                    <h1> Registrarse como usuario</h1>
+                </f:facet>  
+                <h:outputLabel for="correo" value="Correo Electronico" />
+                <p:inputText id="correo" value="#{userLoginView.correo}" required="true" label="correo" />
+
+                <h:outputLabel for="username" value="Nombre Usuario:" />
+                <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
+
+                <h:outputLabel for="password" value="Clave:" />
+                <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
+
+                <f:facet name="footer">
+                    <p:commandButton   value="Registrarse" actionListener="#{userLoginView.login}" update="growl ingresarApp" />
+                </f:facet>  
+            </h:panelGrid>
+            <p:link id="ingresarApp" value="Ingresar a la aplicacion" outcome="/app/inicio.jsf" ></p:link>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

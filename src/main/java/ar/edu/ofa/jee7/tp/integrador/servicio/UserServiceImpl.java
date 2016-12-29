@@ -8,9 +8,11 @@ package ar.edu.ofa.jee7.tp.integrador.servicio;
 import ar.edu.ofa.jee7.tp.integrador.modelo.GrupoUsuario;
 import ar.edu.ofa.jee7.tp.integrador.modelo.Usuario;
 import ar.edu.ofa.jee7.tp.integrador.modelo.UsuarioGrupo;
+import ar.edu.ofa.jee7.tp.integrador.util.SecurityUtils;
 import ar.edu.ofa.jee7.tp.integrador.util.TpEntityManager;
 import ar.edu.ofa.jee7.tp.integrador.util.UsuarioAdmin;
 import ar.edu.ofa.jee7.tp.integrador.util.UsuarioFinal;
+import ar.edu.ofa.jee7.tp.integrador.util.UtilSeguridad;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -29,6 +31,11 @@ public class UserServiceImpl implements UserService{
 
     @Inject @TpEntityManager
     private EntityManager em;
+
+    @Inject 
+    @UtilSeguridad
+    private SecurityUtils seguridad;
+
     
     @Inject @UsuarioFinal 
     private String nombreGrupoUsuarioFinal;
@@ -54,18 +61,18 @@ public class UserServiceImpl implements UserService{
     private Usuario crearUsuario(String user, String password,String correo,GrupoUsuario grupo) {
         if(this.existeNombre(user)) throw new RuntimeException("Nombre de usuario ya existe");
         else{
-            Usuario usr = new Usuario();
-            usr.setNombre(user);
-            usr.setClave(password);
-            usr.setCorreo(correo);
-            this.em.persist(usr);
-            UsuarioGrupo ug = new UsuarioGrupo();
-            ug.setUsuario(usr);
-            ug.setGrupo(grupo);
-            this.em.persist(ug);
-            this.em.flush();
-            this.em.refresh(usr);
-            return usr;
+                Usuario usr = new Usuario();
+                usr.setNombre(user);
+                usr.setClave(seguridad.claveSHA256(password));
+                usr.setCorreo(correo);
+                this.em.persist(usr);
+                UsuarioGrupo ug = new UsuarioGrupo();
+                ug.setUsuario(usr);
+                ug.setGrupo(grupo);
+                this.em.persist(ug);
+                //this.em.flush();
+                //this.em.refresh(usr);
+                return usr;
         }
     }
     

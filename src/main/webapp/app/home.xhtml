@@ -14,8 +14,10 @@
         <div class="row marketing">
             <div class="col-lg-6">
                 <h4>Ofrecer</h4>
-                <p>Ofrezca su propiedad en alquiler.</p>
-
+                <p>
+                    Ofrezca su propiedad en alquiler.
+                    <h:link value="Cargar Propiedad" outcome="departamentos.xhtml"></h:link>
+                </p>
                 <h4>Cobrar</h4>
                 <p>Acepte las ofertas y cobrelas.</p>
 
@@ -31,24 +33,5 @@
             </div>
         </div>
 
-        <p:dialog header="Login" widgetVar="dlg" resizable="false">
-            <h:panelGrid columns="2" cellpadding="5">
-                <f:facet name="header">
-                    <h1> Registrarse como usuario</h1>
-                </f:facet>  
-                <h:outputLabel for="correo" value="Correo Electronico" />
-                <p:inputText id="correo" value="#{userLoginView.correo}" required="true" label="correo" />
-
-                <h:outputLabel for="username" value="Nombre Usuario:" />
-                <p:inputText id="username" value="#{userLoginView.username}" required="true" label="username" />
-
-                <h:outputLabel for="password" value="Clave:" />
-                <p:password id="password" value="#{userLoginView.password}" required="true" label="password" />
-
-                <f:facet name="footer">
-                    <p:commandButton   value="Registrarse" action="#{userLoginView.login}" />
-                </f:facet>  
-            </h:panelGrid>
-        </p:dialog>
     </h:form>
 </ui:composition>

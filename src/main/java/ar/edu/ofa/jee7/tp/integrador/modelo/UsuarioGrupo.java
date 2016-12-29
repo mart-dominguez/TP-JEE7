@@ -13,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostLoad;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 /**
@@ -84,5 +87,14 @@ public class UsuarioGrupo implements Serializable {
         return "UsuarioGrupo{" + "id=" + id + ", nombreGrupo=" + nombreGrupo + ", nombreUsuario=" + nombreUsuario + '}';
     }
     
+    @PostLoad
+    @PrePersist
+    @PreUpdate
+    public void guardarUsrGrp(){
+        System.out.println("====guardarUsrGrp====1: "+this.toString());
+        this.nombreGrupo = this.grupo.getGrupo();
+        this.nombreUsuario = this.usuario.getCorreo();
+        System.out.println("====guardarUsrGrp====2: "+this.toString());
+    }
     
 }
