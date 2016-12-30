@@ -1,7 +1,20 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="/plantilla.xhtml">
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="http://java.sun.com/jsf/passthrough"   
+    template="/plantilla.xhtml">
     
+    <ui:define name="jumbotron">
+        <div class="jumbotron">
+        <div class="container">
+            <h1>TP Integrador!</h1>
+                <p class="lead">TP Final JEE7  - Aplicación para gestión de alquileres temporales.</p>
+                <p>
+                    <h:link class="btn btn-primary btn-lg" pt:role="button" value="Busqueda de departamentos" outcome="busqueda.xhtml"></h:link>>
+                </p>
+            </div>
+        </div>
+    </ui:define>
     <ui:define name="content">
         <ui:include src="home.xhtml"></ui:include>
     </ui:define>

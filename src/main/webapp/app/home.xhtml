@@ -5,33 +5,25 @@
     xmlns:pt="http://java.sun.com/jsf/passthrough"
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core">  
-    <h:form>            
-        <div class="jumbotron">
-            <h1>Jumbotron heading</h1>
-            <p class="lead">TP Final JEE7  - Aplicación para gestión de alquileres temporales.</p>
-            <p><h:outputLink value="javascript:void(0)" class="btn btn-lg btn-success" pt:role="button" onclick="PF('dlg').show();">Registrese y comience a operar</h:outputLink></p>
-        </div>
-        <div class="row marketing">
-            <div class="col-lg-6">
-                <h4>Ofrecer</h4>
-                <p>
-                    Ofrezca su propiedad en alquiler.
-                    <h:link value="Cargar Propiedad" outcome="departamentos.xhtml"></h:link>
-                </p>
-                <h4>Cobrar</h4>
-                <p>Acepte las ofertas y cobrelas.</p>
-
-            </div>
-
-            <div class="col-lg-6">
-
-                <h4>Alquilar</h4>
-                <p>Busque los mejores departamentos para sus viajes.</p>
-
-                <h4>Pagar</h4>
-                <p>Realice el pago de manera segura y eficiente.</p>
+    <h:form>               
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Ofrecer</h2>
+                    <p>Ingrese su departamento para ofrecerlo en alquiler</p>
+                    <h:link class="btn btn-default" pt:role="button" value="Mis Departamentos" outcome="departamentos.xhtml"></h:link>
+                </div>
+                <div class="col-md-4">
+                    <h2>Alquilar</h2>
+                    <p>Configure sus necesidades para buscar un departamento en alquiler</p>
+                    <h:link class="btn btn-default" pt:role="button" value="Alquilar" outcome="departamentos.xhtml"></h:link>
+                </div>
+                <div class="col-md-4">
+                    <h2>Ofertas</h2>
+                    <p>Visualizar las ofertas recibidas en sus propiedades.</p>
+                    <h:link class="btn btn-default" pt:role="button" value="Ver Ofertas" outcome="departamentos.xhtml"></h:link>
+                </div>
             </div>
         </div>
-
     </h:form>
 </ui:composition>

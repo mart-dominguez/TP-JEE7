@@ -7,18 +7,19 @@
     xmlns:f="http://xmlns.jcp.org/jsf/core">  
     <h:form>            
         <div class="ui-fluid">
-            <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank">
+            <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" id="panelDatosDepto">
                 <p:outputLabel for="descr" value="Descripcion"/>
-                <p:inputTextarea id="descr" value="#{editDeptoView.departamento.descripcion}"/>
+                <p:inputTextarea id="descr" value="#{editDeptoView.departamento.descripcion}" disabled="#{empty editDeptoView.departamento}"/>
                 <p:outputLabel for="nroHab" value="Habitaciones" />
-                <p:inputNumber id="nroHab" value="#{editDeptoView.departamento.habitaciones}" minValue="0" maxValue="6" decimalPlaces="0" />
+                <p:inputNumber id="nroHab" value="#{editDeptoView.departamento.habitaciones}" minValue="0" maxValue="6" decimalPlaces="0" disabled="#{empty editDeptoView.departamento}"/>
                 <p:outputLabel for="precioMinimo" value="Precio Minimo"/>
-                <p:inputNumber id="precioMinimo" value="#{editDeptoView.departamento.precioMinimo}" symbol="$"  />
+                <p:inputNumber id="precioMinimo" value="#{editDeptoView.departamento.precioMinimo}" symbol="$" disabled="#{empty editDeptoView.departamento}" />
             </p:panelGrid>
-            <p:panelGrid columns="3" columnClasses="ui-grid-col-4" layout="grid" styleClass="ui-panelgrid-blank">
-                <p:commandButton value="Guardar"></p:commandButton>
-                <p:commandButton value="Editar"></p:commandButton>
-                <p:commandButton value="Cancelar"></p:commandButton>
+            <p:panelGrid columns="4" columnClasses="ui-grid-col-3" layout="grid" styleClass="ui-panelgrid-blank">
+                <p:commandButton actionListener="#{editDeptoView.nuevo}" value="Nuevo" update="panelDatosDepto"></p:commandButton>
+                <p:commandButton actionListener="#{editDeptoView.guardar}" value="Guardar"></p:commandButton>
+                <p:commandButton actionListener="#{editDeptoView.cancelar}" value="Cancelar"></p:commandButton>
+                <p:commandButton actionListener="#{editDeptoView.borrar}" value="Borrar"></p:commandButton>
             </p:panelGrid>            
         </div>
     </h:form>

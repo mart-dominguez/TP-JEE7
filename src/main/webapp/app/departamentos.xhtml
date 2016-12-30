@@ -3,7 +3,14 @@
                 template="/plantilla.xhtml">
     
     <ui:define name="content">
-        <ui:include src="vistas/departamentos/formulario.xhtml"></ui:include>
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <ui:include src="vistas/departamentos/lista.xhtml"></ui:include>
+            </div>
+            <div class="ui-g-6">
+                <ui:include src="vistas/departamentos/formulario.xhtml"></ui:include>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>

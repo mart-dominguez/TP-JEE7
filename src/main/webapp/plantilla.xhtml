@@ -9,29 +9,37 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet library="css" name="jumbotron-narrow.css"/>
+        <h:outputStylesheet library="css" name="jumbotron.css"/>
         <h:outputStylesheet library="css" name="bootstrap.min.css"/>
         <title>TP Integrador</title>
     </h:head>
 
     <h:body>
-        <div class="container">
-            <div class="header clearfix">
-                <nav>
-                    <ul class="nav nav-pills pull-right">
-                        <li role="presentation" class="active"><a href="#">Home</a></li>
-                        <li role="presentation"><a href="#">About</a></li>
-                        <li role="presentation"><a href="#">Contact</a></li>
-                    </ul>
-                </nav>
-                <h3 class="text-muted">Alquileres online</h3>
+        
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Alquileres online</a>
             </div>
-            <ui:insert name="content">Content</ui:insert>
-            <footer class="footer">
-                <p>&copy; 2016 Company, Inc.</p>
-            </footer>
-        </div>
-
+            <div id="navbar" class="navbar-collapse collapse">
+                <span>usuario</span>
+            </div><!--/.navbar-collapse -->
+          </div>
+        </nav>  
+        
+        <ui:insert name="jumbotron"></ui:insert>
+        
+        <ui:insert name="content">Content</ui:insert>
+        <footer class="footer" id="footer">
+            <p>&copy; 2016 Company, Inc.</p>
+        </footer>
+        
     </h:body>
 
 </html>

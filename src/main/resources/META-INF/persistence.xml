@@ -3,8 +3,9 @@
   <persistence-unit name="TP_PU" transaction-type="JTA">
     <jta-data-source>jdbc/TP</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>
