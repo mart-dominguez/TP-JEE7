@@ -23,6 +23,7 @@ import javax.persistence.Table;
 @Table(name="TP_USUARIO")
 @NamedQueries({
     @NamedQuery(name = "Usuario.FindByName",query = "SELECT u FROM Usuario u WHERE u.nombre = :P_NOMBRE"),
+    @NamedQuery(name = "Usuario.FindByMail",query = "SELECT u FROM Usuario u WHERE u.correo = :P_MAIL"),
     @NamedQuery(name = "Usuario.FindAll",query = "SELECT u FROM Usuario u ")
 })
 public class Usuario {

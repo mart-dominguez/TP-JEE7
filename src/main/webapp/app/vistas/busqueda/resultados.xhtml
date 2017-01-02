@@ -1,0 +1,56 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <h:form id="frmResBusqDepto">            
+        <p:dataTable id="tablaResBusq" var="depto" value="#{buscarDeptoView.departamentosEncontrados}" selectionMode="single" selection="#{buscarDeptoView.departamentoSeleccionado}"  rowKey="#{depto.id}">
+            <f:facet name="header">
+                Lista de departamentos encontrados
+            </f:facet>
+            <p:ajax event="rowSelect" listener="#{buscarDeptoView.onRowSelect}" update=":frmCritBusqDepto" />
+            <p:ajax event="rowUnselect" listener="#{buscarDeptoView.onRowUnselect}" update=":frmCritBusqDepto" />
+            <p:column headerText="Id">
+                <h:outputText value="#{depto.id}" />
+            </p:column>
+            <p:column headerText="Descripcion">
+                <h:outputText value="#{depto.descripcion}" />
+            </p:column>
+            <p:column headerText="Habitaciones">
+                <h:outputText value="#{depto.habitaciones}" />
+            </p:column>
+            <p:column headerText="Precio Minimo">
+                <h:outputText value="#{depto.precioMinimo}" />
+            </p:column>
+            <p:column headerText="Propietario">
+                <h:outputText value="#{depto.propietario.nombre}" />
+            </p:column>
+            <f:facet name="footer">
+                <p:commandButton oncomplete="PF('dlg').show();" value="Hacer Oferta" actionListener="#{buscarDeptoView.prepararOferta}" update="frmResBusqDepto:ofertaPrecio frmResBusqDepto:ofertaFechaEntrada frmResBusqDepto:ofertaFechaSalida" >                    
+                </p:commandButton>
+            </f:facet>
+        </p:dataTable>
+
+
+        <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+        <p:dialog header="Realizar Oferta" widgetVar="dlg" resizable="false" >
+            <h:panelGrid columns="2" cellpadding="5">
+                <h:outputLabel for="ofertaPrecio" value="Precio a pagar" />
+                <p:inputNumber id="ofertaPrecio" symbol="$" value="#{buscarDeptoView.oferta.monto}" required="true" label="monto" disabled="#{empty buscarDeptoView.oferta}" />
+
+                <h:outputLabel for="ofertaFechaEntrada" value="Dia de entrada:" />
+                <p:calendar id="ofertaFechaEntrada" showOn="button"  pattern="dd/MM/yyyy" value="#{buscarDeptoView.oferta.fechaEntrada}"  disabled="#{empty buscarDeptoView.oferta}" />
+
+                <h:outputLabel for="ofertaFechaSalida" value="Dia de salida:" />
+                <p:calendar id="ofertaFechaSalida" showOn="button"  pattern="dd/MM/yyyy" value="#{buscarDeptoView.oferta.fechaSalida}"  disabled="#{empty buscarDeptoView.oferta}" />
+
+                <f:facet name="footer">
+                    <p:commandButton value="Hacer Oferta" update="growl" actionListener="#{buscarDeptoView.ofertar}"
+                                     oncomplete="PF('dlg').hide();" />
+                </f:facet>  
+            </h:panelGrid>
+        </p:dialog>
+    </h:form>
+</ui:composition>

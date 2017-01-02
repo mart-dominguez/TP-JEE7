@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/plantilla.xhtml"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h2>Ofertas Recibidas</h2>                
+            </div>
+        </div>
+        <div class="ui-fluid">
+            <p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank" id="panelRecibidas">
+                <ui:include src="vistas/ofertas/recibidas.xhtml"></ui:include>
+                <ui:include src="vistas/ofertas/formRecibidas.xhtml"></ui:include>
+            </p:panelGrid>
+        </div>
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h2>Ofertas Realizadas</h2>                
+            </div>
+        </div>
+        <div class="ui-fluid">
+            <p:panelGrid columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank" id="panelRealizadas">
+                <ui:include src="vistas/ofertas/realizadas.xhtml"></ui:include>
+                <ui:include src="vistas/ofertas/formRealizadas.xhtml"></ui:include>
+            </p:panelGrid>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

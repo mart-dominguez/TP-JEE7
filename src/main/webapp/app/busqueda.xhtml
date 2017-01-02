@@ -2,8 +2,15 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/plantilla.xhtml">
     
-    <ui:define name="content">
-        <h1>BUSQUEDA</h1>
+<ui:define name="content">
+        <div class="ui-g">
+            <div class="ui-g-6">
+                <ui:include src="vistas/busqueda/resultados.xhtml"></ui:include>
+            </div>
+            <div class="ui-g-6">
+                <ui:include src="vistas/busqueda/criterios.xhtml"></ui:include>
+            </div>
+        </div>
     </ui:define>
 
 </ui:composition>

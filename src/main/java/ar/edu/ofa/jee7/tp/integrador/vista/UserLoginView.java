@@ -7,23 +7,39 @@ package ar.edu.ofa.jee7.tp.integrador.vista;
 import ar.edu.ofa.jee7.tp.integrador.modelo.Usuario;
 import ar.edu.ofa.jee7.tp.integrador.servicio.UserService;
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 @Named(value = "userLoginView")
-@ViewScoped
+@SessionScoped
 public class UserLoginView implements Serializable{
     private String username;
     private String correo;
     private String password;
-
+    @Inject HttpServletRequest req;
+            
+    @Inject 
+    private UserService usrSrv;
+    
     boolean userCreado = false;
+    private Usuario usr;
+    
+    @PostConstruct
+    public void init(){
+        if(req.getUserPrincipal()!=null && req.getUserPrincipal().getName()!=null){
+            this.usr = usrSrv.buscarPorNombre(req.getUserPrincipal().getName());
+        }
+    }
 
+    
     public boolean isUserCreado() {
         return userCreado;
     }
@@ -31,9 +47,7 @@ public class UserLoginView implements Serializable{
     public void setUserCreado(boolean userCreado) {
         this.userCreado = userCreado;
     }
-    
-    @Inject 
-    private UserService usrSrv;
+
  
     public String getUsername() {
         return username;
@@ -59,9 +73,9 @@ public class UserLoginView implements Serializable{
         this.correo = correo;
     }
        
-    public void login(ActionEvent event) {
+    public void crear(ActionEvent event) {
         FacesMessage message = null;
-        Usuario usr = usrSrv.crearUsuarioFinal(username, correo,password);         
+        usr = usrSrv.crearUsuarioFinal(username, correo,password);         
         if(usr != null ) {
             userCreado = true;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "usuario creado exitosamente", username);
@@ -70,5 +84,28 @@ public class UserLoginView implements Serializable{
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error en la creacion de usaurio", "datos invalidos");
         }         
         FacesContext.getCurrentInstance().addMessage(null, message);
+        this.limpiarForm();
     }   
+    
+    public String cerrarSesion(){
+        req.getSession().invalidate();
+         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "inicio.xhtml?faces-redirect=true";
+    }
+    
+    private void limpiarForm(){
+        this.username=null;
+        this.correo=null;
+        this.password=null;   
+    }
+
+    public Usuario getUsr() {
+        return usr;
+    }
+
+    public void setUsr(Usuario usr) {
+        this.usr = usr;
+    }
+    
+    
 }

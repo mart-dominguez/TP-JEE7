@@ -30,36 +30,58 @@ public class EditarDepartamentoView implements Serializable{
     
     @Inject
     private DepartamentoService deptoService;
-    
+
+    private Boolean editable;
     private Departamento departamento;
     private List<Departamento> departamentosDelUsuario;
     
     @PostConstruct
     public void init(){
         this.departamentosDelUsuario = deptoService.buscarTodos(req.getUserPrincipal().getName());
+        editable = false;
     }
-   
     
     public void cancelar(ActionEvent event) {
         this.departamento = null;
+        editable=false;
     }   
 
+    public Boolean getEditable() {
+        return editable;
+    }
+
+    public void setEditable(Boolean editable) {
+        this.editable = editable;
+    }
+    
+    public void editar(ActionEvent event) {
+        editable=true;
+    }   
     
     public void nuevo(ActionEvent event) {
-        this.departamento = new Departamento();
+        this.departamento = new Departamento();        
+        editable=true;
     }   
 
     public void guardar(ActionEvent event) {
+        System.out.println("GUardar "+departamento);
         if(departamento.getId()!=null && departamento.getId()>0){
             this.departamento = this.deptoService.actualizar(departamento);            
         }else{
-            this.departamento= this.deptoService.crear(departamento);
+            this.departamento= this.deptoService.crear(departamento,req.getUserPrincipal().getName());
         }
+        // actualizar tabla
+        this.departamentosDelUsuario = deptoService.buscarTodos(req.getUserPrincipal().getName());
+        this.departamento=null;
+        editable=false;
     }   
 
     public void borrar(ActionEvent event) {
         this.deptoService.borrar(departamento);            
         this.departamento = null;
+        editable=false;    
+        // actualizar tabla
+        this.departamentosDelUsuario = deptoService.buscarTodos(req.getUserPrincipal().getName());
     }   
     
       public void onRowSelect(SelectEvent event) {

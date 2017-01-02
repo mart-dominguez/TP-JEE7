@@ -6,6 +6,7 @@
 package ar.edu.ofa.jee7.tp.integrador.modelo;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -88,6 +89,24 @@ public class Departamento {
     @Override
     public String toString() {
         return "Departamento{" + "id=" + id + ", descripcion=" + descripcion + ", habitaciones=" + habitaciones + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Departamento other = (Departamento) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
     
     

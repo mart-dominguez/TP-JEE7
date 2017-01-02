@@ -1,0 +1,27 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:pt="http://java.sun.com/jsf/passthrough"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <h:form id="frmCritBusqDepto">            
+        <h1>Buscar Departamentos</h1>
+        <div class="ui-fluid">
+            <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10" layout="grid" styleClass="ui-panelgrid-blank" id="panelDatosBusqueda">
+                <p:outputLabel for="nroHab" value="Habitaciones" />
+                <p:inputNumber id="nroHab" value="#{buscarDeptoView.habitacionesMinimas}" minValue="0" maxValue="6" decimalPlaces="0" />
+                <p:outputLabel for="precioMinimo" value="Precio Minimo"/>
+                <p:inputNumber id="precioMinimo" value="#{buscarDeptoView.precioMinimo}" symbol="$"  />
+                <p:outputLabel for="fechaArribo" value="Fecha Arribo"/>
+                <p:calendar id="fechaArribo" showOn="button" pattern="dd/MM/yyyy" value="#{buscarDeptoView.fechaArribo}"  />
+                <p:outputLabel for="fechaPartida" value="Fecha Partida"/>
+                <p:calendar id="fechaPartida" showOn="button"  pattern="dd/MM/yyyy" value="#{buscarDeptoView.fechaPartida}"  />                
+            </p:panelGrid>
+            <p:panelGrid columns="2" columnClasses="ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank">
+                <p:commandButton actionListener="#{buscarDeptoView.buscar}" value="Buscar" update=":frmResBusqDepto"></p:commandButton>
+                <p:commandButton actionListener="#{buscarDeptoView.reiniciar}" value="Reiniciar" update=":frmResBusqDepto :frmCritBusqDepto"></p:commandButton>
+            </p:panelGrid>            
+        </div>
+    </h:form>
+</ui:composition>

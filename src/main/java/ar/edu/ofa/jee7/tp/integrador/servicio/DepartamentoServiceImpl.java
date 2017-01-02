@@ -22,12 +22,15 @@ import javax.transaction.Transactional;
 @Transactional
 public class DepartamentoServiceImpl implements DepartamentoService{
 
-    
+    @Inject 
+    private UserService userService; 
     @Inject @TpEntityManager
     private EntityManager em;
     
     @Override
-    public Departamento crear(Departamento nuevo) {
+    public Departamento crear(Departamento nuevo,String propietario) {
+        Usuario usr = userService.buscarPorNombre(propietario);
+        nuevo.setPropietario(usr);
         em.persist(nuevo);
         em.flush();
         em.refresh(nuevo);

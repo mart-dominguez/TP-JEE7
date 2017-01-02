@@ -14,7 +14,7 @@ import java.util.List;
  * @author mdominguez
  */
 public interface DepartamentoService {
-    public Departamento crear(Departamento nuevo);
+    public Departamento crear(Departamento nuevo,String propietario);
     public Departamento actualizar(Departamento nuevo);
     public void borrar(Departamento nuevo);        
     public Departamento buscar(Integer id);            

@@ -52,10 +52,20 @@ public class UserServiceImpl implements UserService{
     public Usuario crearUsuarioAdministrador(String user, String correo,String password) {
         return this.crearUsuario(user, password,correo, this.getGrupoAdministrador());
     }        
-  
+    
     private Boolean existeNombre(String user){
         List<Usuario> lista = this.em.createNamedQuery("Usuario.FindByName").setParameter("P_NOMBRE", user).getResultList();
         return lista.size()> 0;
+    }
+    
+    @Override
+     public Usuario buscarPorNombre(String user){
+         System.out.println("nombre"+user);
+        List<Usuario> lista = this.em.createNamedQuery("Usuario.FindByMail").setParameter("P_MAIL", user).getResultList();
+        if(lista.size()> 0){
+            return lista.get(0);
+        }
+        return null;
     }
     
     private Usuario crearUsuario(String user, String password,String correo,GrupoUsuario grupo) {
